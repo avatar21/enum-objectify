@@ -1,0 +1,15 @@
+# compiled class files
+*.class
+
+# Log files
+*.log
+
+# package files
+*.war
+*.ear
+*.tar.gz
+*.rar
+
+# Intellij
+.idea/
+*.iml
