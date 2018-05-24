@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>tk.minfaatong</groupId>
+    <artifactId>enum-objectify</artifactId>
+    <version>1.0.0</version>
+
+    <properties>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <slf4jVersion>1.6.1</slf4jVersion>
+        <springVersion>4.3.8.RELEASE</springVersion>
+        <fastxmlJacksonVersion>2.9.5</fastxmlJacksonVersion>
+        <log4jVersion>1.2.16</log4jVersion>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${springVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${fastxmlJacksonVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4jVersion}</version>
+        </dependency>
+        <!-- Binding for NOP, silently discarding all logging. -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>${slf4jVersion}</version>
+        </dependency>
+        <!-- Binding for System.out -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4jVersion}</version>
+        </dependency>
+        <!--Binding for log4j version 1.2.x You also need to
+        place log4j.jar on your class path. -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4jVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4jVersion}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <!--Binding for commons logging over slf4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4jVersion}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.gentyref</groupId>
+            <artifactId>gentyref</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.8</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-deploy-plugin</artifactId>-->
+        <!--</dependency>-->
+    </dependencies>
+
+    <!--<pluginRepositories>-->
+        <!--<pluginRepository>-->
+            <!--<id>apache.snapshots</id>-->
+            <!--<url>http://repository.apache.org/snapshots/</url>-->
+            <!--&lt;!&ndash; The releases element here is due to an issue in Maven 2.0 that will be-->
+                 <!--fixed in future releases. This should be able to be disabled altogether. &ndash;&gt;-->
+            <!--<releases>-->
+                <!--<updatePolicy>daily</updatePolicy>-->
+            <!--</releases>-->
+            <!--<snapshots>-->
+                <!--<updatePolicy>daily</updatePolicy>-->
+            <!--</snapshots>-->
+        <!--</pluginRepository>-->
+    <!--</pluginRepositories>-->
+
+    <build>
+        <plugins>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-deploy-plugin</artifactId>-->
+                <!--<version>2.8.2</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>default-deploy</id>-->
+                        <!--<phase>deploy</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>deploy</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.8</version>
+                <executions>
+                    <execution>
+                        <id>default-deploy</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <serverId>nexus</serverId>
+                    <nexusUrl>http://localhost:8081/nexus/</nexusUrl>
+                    <skipStaging>true</skipStaging>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>mvnrepository central</id>
+            <url>https://mvnrepository.com/repos/central</url>
+        </repository>
+        <repository>
+            <id>central</id>
+            <url>http://central.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>sonatype.release.repo</id>
+            <url>https://oss.sonatype.org/content/repositories/releases/</url>
+        </repository>
+
+        <repository>
+            <id>sonatype.snapshots.repo</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>repo.maven.apache</id>
+            <url>http://repo.maven.apache.org/maven2/</url>
+        </repository>
+    </repositories>
+
+    <profiles>
+        <!--<profile>-->
+            <!--<id>dev</id>-->
+        <!--</profile>-->
+        <profile>
+            <id>apache</id>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>apache.snapshots</id>
+                    <name>Maven Plugin Snapshots</name>
+                    <url>http://repository.apache.org/snapshots/</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+
+    <distributionManagement>
+        <downloadUrl>https://repository.apache.org/content/repositories/snapshots</downloadUrl>
+        <repository>
+            <id>apache.releases.https</id>
+            <url>https://repository.apache.org/service/local/staging/deploy/maven2</url>
+        </repository>
+        <snapshotRepository>
+            <id>apache.snapshots.https</id>
+            <url>https://repository.apache.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+</project>
