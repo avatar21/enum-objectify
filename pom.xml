@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.avatar21</groupId>
     <artifactId>enum-objectify</artifactId>
     <version>1.0.0</version>
 
-    <name>enum-objectify</name>
-    <description>Java Enum object bean conversion Utilities</description>
-    <url>http://github.com/avatar21/enum-objectify</url>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.target>1.7</maven.compiler.target>
@@ -20,6 +19,32 @@
         <fastxmlJacksonVersion>2.9.5</fastxmlJacksonVersion>
         <log4jVersion>1.2.16</log4jVersion>
     </properties>
+
+    <!-- More Project Information -->
+    <name>enum-objectify</name>
+    <description>Java Enum object bean conversion Utilities</description>
+    <url>http://github.com/avatar21/enum-objectify</url>
+    <inceptionYear>2018</inceptionYear>
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://raw.githubusercontent.com/avatar21/enum-objectify/master/LICENSE</url>
+        </license>
+    </licenses>
+    <organization>
+        <name>com.github.avatar21</name>
+        <url>http://github.com/avatar21</url>
+    </organization>
+    <developers>
+        <developer>
+            <id>avatar21</id>
+            <name>avatar21</name>
+            <email>avatar21@gmail.com</email>
+        </developer>
+    </developers>
+    <contributors>
+
+    </contributors>
 
     <dependencies>
         <dependency>
@@ -84,12 +109,32 @@
             <artifactId>gentyref</artifactId>
             <version>1.1.0</version>
         </dependency>
-        <dependency>
-            <groupId>org.sonatype.plugins</groupId>
-            <artifactId>nexus-staging-maven-plugin</artifactId>
-            <version>1.6.8</version>
-        </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.8</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <distributionManagement>
         <snapshotRepository>
@@ -101,13 +146,14 @@
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
+
     <build>
         <plugins>
             <!-- deploy maven package -->
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.7</version>
+                <version>1.6.8</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>ossrh</serverId>
@@ -166,10 +212,10 @@
             <id>mvnrepository central</id>
             <url>https://mvnrepository.com/repos/central</url>
         </repository>
-        <repository>
-            <id>central</id>
-            <url>http://central.maven.org/maven2/</url>
-        </repository>
+        <!--<repository>-->
+            <!--<id>central</id>-->
+            <!--<url>http://central.maven.org/maven2/</url>-->
+        <!--</repository>-->
         <repository>
             <id>sonatype.release.repo</id>
             <url>https://oss.sonatype.org/content/repositories/releases/</url>
@@ -179,9 +225,23 @@
             <id>sonatype.snapshots.repo</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
-        <repository>
+
+        <!--<repository>
             <id>repo.maven.apache</id>
             <url>http://repo.maven.apache.org/maven2/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>-->
+
+        <repository>
+            <id>central</id>
+            <name>Maven Repository Switchboard</name>
+            <layout>default</layout>
+            <url>http://repo1.maven.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
     </repositories>
 
