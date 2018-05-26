@@ -51,7 +51,7 @@
     <scm>
         <url>https://github.com/avatar21/enum-objectify</url>
         <connection>scm:git:git://github.com/avatar21/enum-objectify.git</connection>
-        <developerConnection>scm:avatar21:avatar21@password@github.com:avatar21/enum-objectify.git</developerConnection>
+        <developerConnection>scm:github.com:avatar21/enum-objectify.git</developerConnection>
     </scm>
 
     <dependencyManagement>
