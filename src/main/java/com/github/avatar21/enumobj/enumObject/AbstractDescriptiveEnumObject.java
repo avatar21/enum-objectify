@@ -38,7 +38,7 @@ public abstract class AbstractDescriptiveEnumObject<E extends Enum & IDescriptiv
 
     @Override
     public void setEnumInstance(E enumInstance) {
-        Type superClass = getClass().getGenericSuperclass();
+        Type superClass = enumInstance.getClass().getGenericSuperclass();
         if (superClass instanceof Class<?>) { // sanity check, should never happen
             throw new IllegalArgumentException("Internal error: TypeReference constructed without actual type information");
         }

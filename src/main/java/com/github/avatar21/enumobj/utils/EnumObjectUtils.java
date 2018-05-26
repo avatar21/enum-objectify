@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.*;
@@ -29,12 +31,14 @@ public class EnumObjectUtils {
      * <p>get enum by code</p>
      * usage:
      * <pre>
+     * <code>
      *     // === enum class ... ===
-     *     public enum SampleEnum implements IDescriptiveEnum&lt;String&gt; {
+     *     public enum SampleEnum implements IDescriptiveEnum{@literal <}String{@literal >} {
      *          // implement enum ...
      *     }
      *     // === usage ===
      *     SampleEnum enumIns = EnumObjectUtils.getByCode(SampleEnum.class, "0");
+     * </code>
      * </pre>
      *
      * @param <K> code type of descriptive enum
@@ -82,12 +86,31 @@ public class EnumObjectUtils {
      * usage:
      * <pre>
      * <code>
-     *     // === enum class ... ===
-     *     public enum SampleEnum implements IDescriptiveEnum{@literal <}String{@literal >} {
-     *          // implement enum ...
+     * // === enum class ... ===
+     * public enum SexEnum implements IDescriptiveEnum{@literal <}Character{@literal >} {
+     *     MALE('M', "male"), FEMALE('F', "FEMALE");
+     *
+     *     SexEnum(char code, String description) {
+     *         // implement enum ...
      *     }
-     *     // === usage ===
-     *     AbstractDescriptiveEnumObject{@literal <}String{@literal >} sampleEnumObj = EnumObjectUtils.asDescriptiveEnumObject(SampleEnum.class, SampleEnum.S1);
+     * }
+     *
+     * // === enum object class ===
+     * class SexEnumObject extends DescriptiveEnumObject{@literal <}SexEnum, Character{@literal >} {
+     *     // implement constructor ...
+     *     public SexEnumObject(SexEnum enumInstance) {
+     *         super(enumInstance);
+     *     }
+     * }
+     *
+     * // === usage ===
+     * public class TestMain {
+     *     public static void main(String[] args) {
+     *          Gson gson = new Gson();
+     *          SexEnumObject mSexObj = EnumObjectUtils.asDescriptiveEnumObject(SexEnumObject.class, SexEnum.MALE);
+     *          System.out.println("sex = "+gson.toJson(mSexOb));
+     *      }
+     * }
      * </code>
      * </pre>
      *
@@ -98,19 +121,30 @@ public class EnumObjectUtils {
      * @param <T> a child class of AbstractDescriptiveEnumObject class, as a container bean for accepting the result of enum conversion
      * @return {@link AbstractDescriptiveEnumObject} pojo instance representing enum
      */
-    public static <K, E extends Enum & IDescriptiveEnum<K>, T extends AbstractDescriptiveEnumObject<E, K>> T asDescriptiveEnumObject(Class<T> enumObjectClass, E enumInstance) {
+    public static <K, E extends Enum & IDescriptiveEnum<K>, T extends AbstractDescriptiveEnumObject<E, K>> T asDescriptiveEnumObject(
+        Class<T> enumObjectClass, E enumInstance) {
         T enumObject = null;
-        if (enumObjectClass.equals(DescriptiveEnumObject.class)) {
-            enumObject = (T) new DescriptiveEnumObject(enumInstance);
-        } else {
-            try {
-                enumObject = enumObjectClass.newInstance();
-            } catch (InstantiationException e) {
-                logger.error(e.getLocalizedMessage());
-            } catch (IllegalAccessException e) {
-                logger.error(e.getLocalizedMessage());
+        try {
+            if (enumObjectClass.equals(DescriptiveEnumObject.class)) {
+                enumObject = (T) new DescriptiveEnumObject(enumInstance);
+            } else {
+                Constructor<T> mArgsConstructor = null;
+
+                try {
+                    mArgsConstructor = enumObjectClass.getDeclaredConstructor(enumInstance.getClass());
+                } catch (Exception e1) {
+                }
+
+                if (mArgsConstructor != null) {
+                    enumObject = mArgsConstructor.newInstance(enumInstance);
+                } else {
+                    enumObject = enumObjectClass.getDeclaredConstructor().newInstance();
+                    enumObject.setEnumInstance(enumInstance);
+                }
+
             }
-            enumObject.setEnumInstance(enumInstance);
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+            logger.error(e.getLocalizedMessage());
         }
         return enumObject;
     }
@@ -208,12 +242,14 @@ public class EnumObjectUtils {
      * <p>get enum by code</p>
      * usage:
      * <pre>
+     * <code>
      *     // === enum class ... ===
-     *     public enum SampleEnum implements IDescriptiveEnum&lt;String&gt; {
+     *     public enum SampleEnum implements IDescriptiveEnum{@literal <}String{@literal >} {
      *          // implement enum ...
      *     }
      *     // === usage ===
      *     SampleEnum enumIns = EnumObjectUtils.getByCode(SampleEnum.class, "0");
+     * </code>
      * </pre>
      *
      * @param <K> code type of descriptive enum
