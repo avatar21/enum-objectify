@@ -27,7 +27,7 @@ public class EnumObjectUtils {
         EnumObjectUtils.class);
     /**
      * <p>get enum by code</p>
-     * <p>usage:
+     * usage:
      * <pre>
      *     // === enum class ... ===
      *     public enum SampleEnum implements IDescriptiveEnum&lt;String&gt; {
@@ -36,13 +36,12 @@ public class EnumObjectUtils {
      *     // === usage ===
      *     SampleEnum enumIns = EnumObjectUtils.getByCode(SampleEnum.class, "0");
      * </pre>
-     * </p>
      *
      * @param <K> code type of descriptive enum
      * @param <E> descriptive enum type (implement {@link IDescriptiveEnum})
      * @param enumClass must be implementing {@link IDescriptiveEnum}&lt;K&gt; interface
      * @param code &lt;K&gt; code type
-     * @return &lt;K&gt;
+     * @return &lt;E&gt;
      */
     public static <K, E extends Enum & IDescriptiveEnum<K>> E getByCode(Class<E> enumClass, K code) {
         E instance = null;
@@ -80,22 +79,23 @@ public class EnumObjectUtils {
 
     /**
      * <p>convert enum into POJO object</p>
-     * <p>usage:
+     * usage:
      * <pre>
+     * <code>
      *     // === enum class ... ===
-     *     public enum SampleEnum implements IDescriptiveEnum&lt;String&gt; {
+     *     public enum SampleEnum implements IDescriptiveEnum{@literal <}String{@literal >} {
      *          // implement enum ...
      *     }
      *     // === usage ===
-     *     AbstractDescriptiveEnumObject<String> sampleEnumObj = EnumObjectUtils.asDescriptiveEnumObject(SampleEnum.class, SampleEnum.S1);
+     *     AbstractDescriptiveEnumObject{@literal <}String{@literal >} sampleEnumObj = EnumObjectUtils.asDescriptiveEnumObject(SampleEnum.class, SampleEnum.S1);
+     * </code>
      * </pre>
-     * </p>
      *
+     * @param enumObjectClass must be implementing {@link IDescriptiveEnum}&lt;K&gt; interface
+     * @param enumInstance enum instance
      * @param <K> code type of descriptive enum
      * @param <E> descriptive enum type (implement {@link IDescriptiveEnum})
      * @param <T> a child class of AbstractDescriptiveEnumObject class, as a container bean for accepting the result of enum conversion
-     * @param enumObjectClass must be implementing {@link IDescriptiveEnum}&lt;K&gt; interface
-     * @param enumInstance enum instance
      * @return {@link AbstractDescriptiveEnumObject} pojo instance representing enum
      */
     public static <K, E extends Enum & IDescriptiveEnum<K>, T extends AbstractDescriptiveEnumObject<E, K>> T asDescriptiveEnumObject(Class<T> enumObjectClass, E enumInstance) {
@@ -138,12 +138,12 @@ public class EnumObjectUtils {
     }
 
     /**
-     * <p>retrieve all enum values as code->enum {@link HashMap}</p>
+     * <p>retrieve all enum values as code-&gt;enum {@link HashMap}</p>
      *
+     * @param enumClass must be implementing {@link IDescriptiveEnum}&lt;K&gt; interface
      * @param <K> code type of descriptive enum
      * @param <E> descriptive enum type (implement {@link IDescriptiveEnum})
-     * @param enumClass must be implementing {@link IDescriptiveEnum}&lt;K&gt; interface
-     * @return possible values {@link Map} of code K->enum E
+     * @return possible values {@link Map} of code K-&gt;enum E
      */
     public static <K, E extends Enum & IDescriptiveEnum<K>> Map<K, E> asDescriptiveEnumMap(Class<E> enumClass) {
         Map<K, E> enumMap = new HashMap<>();
@@ -156,9 +156,11 @@ public class EnumObjectUtils {
     /**
      * <p>retrieve all enum values as pojo array</p>
      *
+     * @param enumClass must be implementing {@link IDescriptiveEnum}&lt;K&gt; interface
+     * @param enumObjectClass enum object class, inherits {@link AbstractDescriptiveEnumObject}
      * @param <K> code type of descriptive enum
      * @param <E> descriptive enum type (implement {@link IDescriptiveEnum})
-     * @param enumClass must be implementing {@link IDescriptiveEnum}&lt;K&gt; interface
+     * @param <T> enum object, subclass of {@link AbstractDescriptiveEnumObject}
      * @return possible values array of pojo {@link AbstractDescriptiveEnumObject} representing E
      */
     public static <K, E extends Enum & IDescriptiveEnum<K>, T extends AbstractDescriptiveEnumObject<E, K>> T[] asDescriptiveEnumObjectArray(Class<E> enumClass, Class<T> enumObjectClass) {
@@ -168,9 +170,11 @@ public class EnumObjectUtils {
     /**
      * <p>retrieve all enum values as pojo list</p>
      *
+     * @param enumClass must be implementing {@link IDescriptiveEnum}&lt;K&gt; interface
+     * @param enumObjectClass enum object class, inherits {@link AbstractDescriptiveEnumObject}
      * @param <K> code type of descriptive enum
      * @param <E> descriptive enum type (implement {@link IDescriptiveEnum})
-     * @param enumClass must be implementing {@link IDescriptiveEnum}&lt;K&gt; interface
+     * @param <T> enum object, subclass of {@link AbstractDescriptiveEnumObject}
      * @return possible values {@link List} of pojo {@link AbstractDescriptiveEnumObject} representing E
      */
     public static <K, E extends Enum & IDescriptiveEnum<K>, T extends AbstractDescriptiveEnumObject<E, K>> List<T> asDescriptiveEnumObjectList(Class<E> enumClass, Class<T> enumObjectClass) {
@@ -182,22 +186,14 @@ public class EnumObjectUtils {
     }
 
     /**
-     * <p>retrieve all enum values as code->pojo map</p>
+     * <p>retrieve all enum values as code-&gt;pojo map</p>
      *
      * @param <K> code type of descriptive enum
      * @param <E> descriptive enum type (implement {@link IDescriptiveEnum})
-     * @param <T>
+     * @param <T> enum object, subclass of {@link AbstractDescriptiveEnumObject}
      * @param enumClass must be implementing {@link IDescriptiveEnum}&lt;K&gt; interface
-     * @return possible values {@link Map} of code K->pojo {@link AbstractDescriptiveEnumObject} representing E
-     */
-    /**
-     *
-     * @param enumClass
-     * @param enumObjectClass
-     * @param <K>
-     * @param <E>
-     * @param <T>
-     * @return
+     * @param enumObjectClass enum object class, inherits {@link AbstractDescriptiveEnumObject}
+     * @return possible values {@link Map} of code K-&gt;pojo {@link AbstractDescriptiveEnumObject} representing E
      */
     public static <K, E extends Enum & IDescriptiveEnum<K>, T extends AbstractDescriptiveEnumObject<E, K>> Map<K, T> asDescriptiveEnumObjectMap(Class<E> enumClass, Class<T> enumObjectClass) {
         Map<K, T> objMap = new HashMap<>();
@@ -210,7 +206,7 @@ public class EnumObjectUtils {
 
     /**
      * <p>get enum by code</p>
-     * <p>usage:
+     * usage:
      * <pre>
      *     // === enum class ... ===
      *     public enum SampleEnum implements IDescriptiveEnum&lt;String&gt; {
@@ -219,7 +215,6 @@ public class EnumObjectUtils {
      *     // === usage ===
      *     SampleEnum enumIns = EnumObjectUtils.getByCode(SampleEnum.class, "0");
      * </pre>
-     * </p>
      *
      * @param <K> code type of descriptive enum
      * @param <E> descriptive enum type (implement {@link IConfigSubKey})
@@ -303,6 +298,8 @@ public class EnumObjectUtils {
      * @param enumClass 想获得解析的实际枚举类
      * @param code 想获得的编码(字符串)
      * @return 返回已解析成功的枚举
+     * @throws ClassNotFoundException enum class is missing
+     * @throws ClassCastException failed to cast code to enum
      */
     public static <K, T extends Enum & IDescriptiveEnum<K>> T getByGenericCode(Class<T> enumClass, String code) throws Exception, ClassNotFoundException, ClassCastException {
         Type enumType = enumClass;

@@ -1,5 +1,7 @@
 package com.github.avatar21.enumobj.test;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.github.avatar21.enumobj.constants.ModifyStatus;
 import com.github.avatar21.enumobj.constants.SexEnum;
 import com.github.avatar21.enumobj.enumObject.DescriptiveEnumObject;

@@ -2,17 +2,18 @@ package com.github.avatar21.enumobj.configKey;
 
 /**
  * <p>persistable enum type (used by JPA pojo annotation for instance), must implement IDescriptive</p>
- * <p>usage:
+ * usage:
  * <pre>
- *     public enum SexEnum implements IDescriptiveEnum<Character>, IPersistableDescriptiveEnum<SexEnum, Character> {
+ * <code>
+ *     public enum SexEnum implements IDescriptiveEnum{@literal <}Character{@literal >}, IPersistableDescriptiveEnum{@literal <}SexEnum, Character{@literal >} {
  *         // implement IDescriptiveEnum's methods ...
- *         @Override
+ *         {@literal @}Override
  *          public SexEnum returnEnum(Character persistedValue) {
  *              return EnumObjectUtils.getByCode(SexEnum.class, persistedValue);
  *          }
  *     }
+ * </code>
  * </pre>
- * </p>
  *
  * @param <E> enum type
  * @param <K> code type of enum

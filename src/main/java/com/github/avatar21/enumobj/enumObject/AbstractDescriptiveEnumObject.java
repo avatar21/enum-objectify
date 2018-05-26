@@ -6,7 +6,7 @@ import java.lang.reflect.Type;
  * <p>POJO representative of {@link IDescriptiveEnum} enum</p>
  *
  * @param <K> code type of enum
- * @param <E>
+ * @param <E> enum type
  */
 public abstract class AbstractDescriptiveEnumObject<E extends Enum & IDescriptiveEnum<K>, K> implements IDescriptiveEnumObject<E, K> {
     private K code;

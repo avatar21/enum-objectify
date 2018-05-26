@@ -4,6 +4,9 @@ import com.github.avatar21.enumobj.enumObject.IDescriptiveEnum;
 import com.github.avatar21.enumobj.enumObject.IPersistableEnum;
 import com.github.avatar21.enumobj.utils.EnumObjectUtils;
 
+/**
+ *
+ */
 public enum SexEnum implements IDescriptiveEnum<Character>, IPersistableEnum<SexEnum, Character> {
     MALE('M', "male"), FEMALE('F', "FEMALE");
 

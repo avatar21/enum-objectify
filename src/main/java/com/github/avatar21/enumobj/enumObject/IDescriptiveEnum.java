@@ -2,10 +2,11 @@ package com.github.avatar21.enumobj.enumObject;
 
 /**
  * <p>descriptive enum type consists of code and description</p>
- * <p>
- *     sample usage:
+ *
+ * sample usage:
+ * <pre>
  *     <code>
- *         public enum SexEnum implements IDescriptiveEnum<Character> {
+ *         public enum SexEnum implements IDescriptiveEnum{@literal <}Character{@literal >} {
  *              MALE('M', "male"), FEMALE('F', "FEMALE");
  *
  *              Character code;
@@ -24,18 +25,18 @@ package com.github.avatar21.enumobj.enumObject;
  *                  this.description = description;
  *              }
  *
- *              @Override
+ *              {@literal @}Override
  *              public Character getCode() {
  *                  return code;
  *              }
  *
- *              @Override
+ *              {@literal @}Override
  *              public String getDescription() {
  *                  return description;
  *              }
  *          }
  *     </code>
- * </p>
+ * </pre>
  *
  * @param <K> code type
  */
