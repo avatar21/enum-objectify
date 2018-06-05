@@ -5,6 +5,7 @@ import com.github.avatar21.enumobj.configKey.IConfigSubKey;
 import com.github.avatar21.enumobj.enumObject.AbstractDescriptiveEnumObject;
 import com.github.avatar21.enumobj.enumObject.DescriptiveEnumObject;
 import com.github.avatar21.enumobj.enumObject.IDescriptiveEnum;
+import com.github.avatar21.generics.utils.GenericBeanUtils;
 import com.googlecode.gentyref.GenericTypeReflector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

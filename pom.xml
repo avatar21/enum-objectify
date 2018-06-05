@@ -7,7 +7,7 @@
 
     <groupId>com.github.avatar21</groupId>
     <artifactId>enum-objectify</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1.2</version>
 
     <packaging>jar</packaging>
 
@@ -15,6 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>1.7</maven.compiler.target>
         <maven.compiler.source>1.7</maven.compiler.source>
+        <project.scm.id>git-enum-objectify</project.scm.id>
         <slf4jVersion>1.6.1</slf4jVersion>
         <springVersion>4.3.8.RELEASE</springVersion>
         <fastxmlJacksonVersion>2.9.5</fastxmlJacksonVersion>
@@ -22,7 +23,7 @@
     </properties>
 
     <!-- More Project Information -->
-    <name>enum-objectify</name>
+    <name>Java Enum Objectify</name>
     <description>Java Enum object bean conversion Utilities</description>
     <url>http://github.com/avatar21/enum-objectify</url>
     <inceptionYear>2018</inceptionYear>
@@ -106,6 +107,11 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>com.github.avatar21</groupId>
+            <artifactId>generic-bean-utils</artifactId>
+            <version>1.0.0</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
