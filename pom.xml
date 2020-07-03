@@ -19,7 +19,7 @@
         <slf4jVersion>1.6.1</slf4jVersion>
         <springVersion>[4.3.18,)</springVersion>
         <fastxmlJacksonVersion>[2.9.10.5,)</fastxmlJacksonVersion>
-        <log4jVersion>1.2.27</log4jVersion>
+        <log4jVersion>2.13.3</log4jVersion>
     </properties>
 
     <!-- More Project Information -->
@@ -121,6 +121,7 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -157,8 +158,8 @@
             <version>${slf4jVersion}</version>
         </dependency>
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
             <version>${log4jVersion}</version>
             <scope>runtime</scope>
         </dependency>
@@ -166,7 +167,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
-            <version>${slf4jVersion}</version>
+            <version>2.0.0-alpha1</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
