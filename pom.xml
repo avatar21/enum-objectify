@@ -19,7 +19,7 @@
         <slf4jVersion>1.6.1</slf4jVersion>
         <springVersion>[4.3.18,)</springVersion>
         <fastxmlJacksonVersion>[2.9.10.5,)</fastxmlJacksonVersion>
-        <log4jVersion>2.13.3</log4jVersion>
+        <log4jVersion>2.15.0</log4jVersion>
     </properties>
 
     <!-- More Project Information -->
