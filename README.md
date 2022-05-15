@@ -1,6 +1,8 @@
 # enum-objectify
 Java Enum bean object conversion Utilities
 
+![project build badge](https://github.com/avatar21/enum-objectify/actions/workflows/maven.yml/badge.svg)
+
 1. method#1 - use the generic DescriptiveEnumObject as a receiver, then use EnumObjectUtils to do the conversion
     - example:
     ```java
